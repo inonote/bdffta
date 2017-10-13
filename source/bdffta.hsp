@@ -1,0 +1,169 @@
+#packopt name "bdffta"
+#packopt hide 1
+#packopt runtime "hsp3cl"
+#runtime "hsp3cl"
+#include "kernel32.as"
+#include "shell32.as"
+//http://rpen.blogspot.jp/2007/12/blog-post_16.html
+#module longer
+#const EXPAND_SIZE 1024
+// 文字列の初期値を設定する
+#deffunc set_string str str_to_set
+    string_length = strlen(str_to_set)
+;   string_size = EXPAND_SIZE * (1 + string_length / EXPAND_SIZE)
+    string_size = 64            // 測定のために公平化
+    sdim string, string_size
+    poke string, 0, str_to_set
+    return
+
+// 文字列を返す
+#deffunc get_string var target
+    target = string
+    return
+
+// 文字列の長さを返す
+#defcfunc get_string_length
+    return string_length
+
+// 文字列を連結する
+#deffunc add_string str str_to_add
+    len = strlen(str_to_add)
+    if string_size <= string_length + len {
+        string_size += EXPAND_SIZE
+        memexpand string, string_size
+    }
+    poke string, string_length, str_to_add
+    string_length += len
+    return
+#global
+#ifdef _debug
+	#undef end
+	#define end repeat:await 1:loop
+#endif
+#uselib "winmm.dll"
+#cfunc timeGetTime "timeGetTime"
+//bdftta [*.bdf] [*.c] [*.h] [arrayname] [width] [height] [includefile]
+gosub *GetCmd
+if Argc==1{
+	print "Convert BDF Font to Array Ver.1.0"
+	print "(c)Inonote 2017"
+	print "----"
+	print "bdftta [*.bdf] [*.c] [*.h] [Array Name] [Width] [Height] [Include File Name]"
+	end
+}
+if Argc<8:print "Not enough command line parameters.":end
+sdim buf,0x1000000
+print "Convert BDF Font to Array Ver.1.0"
+print "(c)Inonote 2017"
+fname=Argv(1)
+fwidth=int(Argv(5))
+if fwidth>8:print "Incorrect width.":end
+if fwidth<4:print "Incorrect width.":end
+fheight=int(Argv(6))
+if fheight>16:print "Incorrect height.":end
+if fheight<8:print "Incorrect height.":end
+sourceFile=Argv(2)
+headerFile=Argv(3)
+includeFile=Argv(7)
+fempty="{"
+repeat fwidth*2
+	fempty+="0"
+	if cnt==fwidth*2-1:break
+	fempty+=","
+loop
+fempty+="},\n"
+notesel buf
+print "Loading file..."
+dirlist list,fname,1
+if stat==0:print "File does not exist.":end
+noteload fname
+print "..."
+sdim arbuf
+max=noteinfo(0)
+set_string ""
+if includeFile!="":add_string "#include "+includeFile+"\n"
+add_string "const u16 "+Argv(4)+"[0x10000]["+int(fwidth*2+1)+"] = {\n"
+st=timeGetTime():t=st
+chars=0
+code=-1
+repeat max
+	noteget s,cnt
+	split s," ",cmd,prm
+	if cmd=="ENCODING"{
+		if (int(prm)-code)>1{//途切れた
+			repeat (int(prm)-code)-1
+				add_string fempty//補完
+				chars++
+			loop
+		}
+		code=int(prm)
+	}
+	if cmd=="ENDCHAR"{
+		notesel arbuf
+		repeat limit(fheight-noteinfo(0),0,fheight)
+			noteadd "0",0,0
+		loop
+		noteunsel
+		strrep arbuf,"\n",","
+		arbuf=strtrim(arbuf,2,',')
+		bfrag=0
+		add_string arbuf+"},\n"
+		arbuf=""
+		chars++
+	}
+	if bfrag{
+		cd=0
+		if strlen(cmd)=2{
+			cmd+="00"
+		}
+		arbuf+=strf("0x%s\n",cmd)
+	}
+	if cmd=="BITMAP":bfrag=1:add_string "{"
+	if (timeGetTime()-t)>500{
+		print strf("... %5d/%5d (%d chars)",cnt,max,chars)
+		t=timeGetTime()
+	}
+loop
+noteunsel
+print "Conversion complete..."
+add_string "};"
+sdim cbuf
+get_string cbuf
+print strf("Outputting... [%s]",sourceFile)
+notesel cbuf
+notesave sourceFile
+print strf("Outputting... [%s]",headerFile)
+sdim hbuf
+notesel hbuf
+noteadd "extern const u16 "+Argv(4)+"[0x10000]["+int(fwidth*2+1)+"];",-1,0
+notesave headerFile
+print "Complete."
+end
+*GetCmd
+		Argc = 0
+		Argv = ""
+		// コマンドライン文字列のポインタ取得
+		GetCommandLineW
+		pCommandLine = stat
+		// コマンドライン文字列の長さ取得
+		lstrlenW pCommandLine
+		CommandLineLength = stat
+		// 分解したコマンドライン文字列のポインタ配列取得
+		CommandLineToArgvW pCommandLine, varptr(Argc)
+		dupptr pArgv, stat, Argc * 4, 4
+		// 実行ファイル名
+		dupptr Args, pArgv(0), (CommandLineLength + 1) * 2, 2
+		Argv(0) = cnvwtos(Args)
+		// コマンドライン引数 1つ ずつ処理
+	#ifdef _debug
+		Argc--
+		repeat Argc - 1, 2
+	#else
+		repeat Argc - 1, 1
+	#endif
+		// 「ポインタ」から「文字列」に
+		dupptr Args, pArgv(cnt), (CommandLineLength + 1) * 2, 2
+		Argv(length(Argv)) = cnvwtos(Args)
+	loop
+	LocalFree varptr(pArgv)
+return
