@@ -1,3 +1,5 @@
+//bdffta ver1.5
+//by 2017 いののて
 #packopt name "bdffta"
 #packopt hide 1
 #packopt runtime "hsp3cl"
@@ -45,7 +47,7 @@
 //bdftta [*.bdf] [*.c] [*.h] [arrayname] [width] [height] [includefile]
 gosub *GetCmd
 if Argc==1{
-	print "Convert BDF Font to Array Ver.1.0"
+	print "Convert BDF Font to Array Ver.1.5"
 	print "(c)Inonote 2017"
 	print "----"
 	print "bdftta [*.bdf] [*.c] [*.h] [Array Name] [Width] [Height] [Include File Name]"
