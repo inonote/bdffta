@@ -66,6 +66,7 @@ sourceFile=Argv(2)
 headerFile=Argv(3)
 includeFile=Argv(7)
 fempty="{"
+//fempty+="0"//ファイルサイズを抑えるため省略する。
 repeat fwidth*2
 	fempty+="0"
 	if cnt==fwidth*2-1:break
@@ -84,11 +85,10 @@ set_string ""
 if includeFile!="":add_string "#include "+includeFile+"\n"
 add_string "const u16 "+Argv(4)+"[0x10000]["+int(fwidth*2+1)+"] = {\n"
 st=timeGetTime():t=st
-chars=0
-code=-1
+chars=0:code=-1:ofsx=0:ofsy=0:sizx=0
 repeat max
 	noteget s,cnt
-	split s," ",cmd,prm
+	split s," ",cmd,prm,prm2,prm3,prm4
 	if cmd=="ENCODING"{
 		if (int(prm)-code)>1{//途切れた
 			repeat (int(prm)-code)-1
@@ -98,27 +98,30 @@ repeat max
 		}
 		code=int(prm)
 	}
+	if cmd=="BBX"{//オフセット
+		sizx=int(prm)
+		ofsx=int(prm3)
+		ofsy=int(prm4)
+	}
 	if cmd=="ENDCHAR"{
 		notesel arbuf
-		repeat limit(fheight-noteinfo(0),0,fheight)
+		repeat limit(fheight-ofsy-noteinfo(0)-1,0,fheight)
 			noteadd "0",0,0
 		loop
 		noteunsel
 		strrep arbuf,"\n",","
 		arbuf=strtrim(arbuf,2,',')
 		bfrag=0
-		add_string arbuf+"},\n"
+		add_string "{"+arbuf+"},\n"
 		arbuf=""
 		chars++
 	}
 	if bfrag{
 		cd=0
-		if strlen(cmd)=2{
-			cmd+="00"
-		}
-		arbuf+=strf("0x%s\n",cmd)
+		cmd=int("$"+cmd)
+		arbuf+=strf("0x%02X\n",cmd)
 	}
-	if cmd=="BITMAP":bfrag=1:add_string "{"
+	if cmd=="BITMAP":bfrag=1
 	if (timeGetTime()-t)>500{
 		print strf("... %5d/%5d (%d chars)",cnt,max,chars)
 		t=timeGetTime()
@@ -139,6 +142,7 @@ noteadd "extern const u16 "+Argv(4)+"[0x10000]["+int(fwidth*2+1)+"];",-1,0
 notesave headerFile
 print "Complete."
 end
+//https://blogs.yahoo.co.jp/kerupani/15790439.html
 *GetCmd
 		Argc = 0
 		Argv = ""
