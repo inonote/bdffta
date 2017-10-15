@@ -1,4 +1,4 @@
-//bdffta ver1.5
+//bdffta ver1.8
 //by 2017 いののて
 #packopt name "bdffta"
 #packopt hide 1
@@ -112,19 +112,21 @@ repeat max
 		loop
 		noteunsel
 		strrep arbuf,"\n",","
-		arbuf=strtrim(arbuf,2,',')
 		bfrag=0
-		add_string "{"+arbuf+"},\n"
+		add_string "{"
+		add_string strtrim(arbuf,2,',')
+		add_string "},\n"
 		arbuf=""
+		sizx=0:ofsx=0:ofsy=0
 		chars++
 	}
 	if bfrag{
-		cd=0
-		cmd=int("$"+cmd)
+		if strlen(cmd)==2:cmd+="00"
+		cmd=int("$"+cmd)>>ofsx
 		arbuf+=strf("0x%02X\n",cmd)
 	}
 	if cmd=="BITMAP":bfrag=1
-	if (timeGetTime()-t)>500{
+	if (timeGetTime()-t)>1000{
 		print strf("... %5d/%5d (%d chars)",cnt,max,chars)
 		t=timeGetTime()
 	}
