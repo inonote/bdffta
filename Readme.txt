@@ -1,6 +1,6 @@
-[　製品名　] BDF フォントをC言語の配列に変換 Ver.1.0
+[　製品名　] BDF フォントをC言語の配列に変換 Ver.1.8
 [ファイル名] bdffta.exe
-[バージョン] 1.0
+[バージョン] 1.8
 [　 作者 　] いののて
 [　連絡先　] InoueSoftware@excite.co.jp、https://twitter.com/inonote
 [　　HP　　] http://inoueeee.mitarashidango.com/
