@@ -1,25 +1,25 @@
-[@»•i–¼@] BDF ƒtƒHƒ“ƒg‚ðCŒ¾Œê‚Ì”z—ñ‚É•ÏŠ· Ver.1.0
-[ƒtƒ@ƒCƒ‹–¼] bdffta.exe
-[ƒo[ƒWƒ‡ƒ“] 1.0
-[@ ìŽÒ @] ‚¢‚Ì‚Ì‚Ä
-[@˜A—æ@] InoueSoftware@excite.co.jpAhttps://twitter.com/inonote
-[@@HP@@] http://inoueeee.mitarashidango.com/
+[ã€€è£½å“åã€€] BDF ãƒ•ã‚©ãƒ³ãƒˆã‚’Cè¨€èªžã®é…åˆ—ã«å¤‰æ› Ver.1.0
+[ãƒ•ã‚¡ã‚¤ãƒ«å] bdffta.exe
+[ãƒãƒ¼ã‚¸ãƒ§ãƒ³] 1.0
+[ã€€ ä½œè€… ã€€] ã„ã®ã®ã¦
+[ã€€é€£çµ¡å…ˆã€€] InoueSoftware@excite.co.jpã€https://twitter.com/inonote
+[ã€€ã€€HPã€€ã€€] http://inoueeee.mitarashidango.com/
 
-BDFƒtƒHƒ“ƒg‚ðCŒ¾Œê‚Ì”z—ñ‚É•ÏŠ·‚·‚éƒc[ƒ‹‚Å‚·B
-BDFƒtƒHƒ“ƒg‚Ì‰üsƒR[ƒh‚ðCR+LF‚É‚µ‚Ä‚¨‚­•K—v‚ª‚ ‚è‚Ü‚·B
+BDFãƒ•ã‚©ãƒ³ãƒˆã‚’Cè¨€èªžã®é…åˆ—ã«å¤‰æ›ã™ã‚‹ãƒ„ãƒ¼ãƒ«ã§ã™ã€‚
+BDFãƒ•ã‚©ãƒ³ãƒˆã®æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã‚’CR+LFã«ã—ã¦ãŠãå¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 
-œŽg—p•û–@
-@ƒRƒ}ƒ“ƒhƒvƒƒ“ƒvƒg–¼‚Åƒpƒ‰ƒ[ƒ^[‚ð•t‚¯‚ÄŽÀs‚µ‚Ü‚·B
-@
-@bdftta [*.bdf] [*.c] [*.h] [Array Name] [Width] [Height] [Include File Name]
-@E[*.bdf]@EEEEEEEEE@•ÏŠ·‚·‚éBDFƒtƒ@ƒCƒ‹‚Å‚·B
-@E[*.c]@@EEEEEEEEE@o—Í‚·‚éƒ\[ƒXƒR[ƒh‚Ì–¼‘O‚Å‚·B
-@E[*.h]@@EEEEEEEEE@o—Í‚·‚éƒwƒbƒ_[ƒtƒ@ƒCƒ‹‚Ì–¼‘O‚Å‚·B
-@E[ArrayName]@@EEEEEE@”z—ñ•Ï”‚Ì–¼‘O‚Å‚·B
-@E[Width]@EEEEEEEEE@ƒtƒHƒ“ƒg‚Ì”¼Šp•‚Å‚·B(4ˆÈã8ˆÈ‰º)
-@E[Height] EEEEEEEEE@ƒtƒHƒ“ƒg‚Ì‚‚³‚Å‚·B@(8ˆÈã16ˆÈ‰º)
-@E[Include File Name]@EEE@ƒ\[ƒXƒtƒ@ƒCƒ‹‚É‘}“ü‚·‚éƒCƒ“ƒNƒ‹[ƒhƒtƒ@ƒCƒ‹–¼‚ðŽw’è‚µ‚Ü‚·B(È—ª‰Â)
-@@
-@ˆ—‚Í2•ª‚©‚ç15•ª‚Ù‚Ç‚ÅI‚í‚è‚Ü‚·B(PC‚ÌƒXƒyƒbƒN‚É‚æ‚é)
+â—ä½¿ç”¨æ–¹æ³•
+ã€€ã‚³ãƒžãƒ³ãƒ‰ãƒ—ãƒ­ãƒ³ãƒ—ãƒˆåã§ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’ä»˜ã‘ã¦å®Ÿè¡Œã—ã¾ã™ã€‚
+ã€€
+ã€€bdftta [*.bdf] [*.c] [*.h] [Array Name] [Width] [Height] [Include File Name]
+ã€€ãƒ»[*.bdf]ã€€ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ã€€å¤‰æ›ã™ã‚‹BDFãƒ•ã‚¡ã‚¤ãƒ«ã§ã™ã€‚
+ã€€ãƒ»[*.c]ã€€ã€€ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ã€€å‡ºåŠ›ã™ã‚‹ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ã®åå‰ã§ã™ã€‚
+ã€€ãƒ»[*.h]ã€€ã€€ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ã€€å‡ºåŠ›ã™ã‚‹ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã§ã™ã€‚
+ã€€ãƒ»[ArrayName]ã€€ã€€ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ã€€é…åˆ—å¤‰æ•°ã®åå‰ã§ã™ã€‚
+ã€€ãƒ»[Width]ã€€ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ã€€ãƒ•ã‚©ãƒ³ãƒˆã®åŠè§’å¹…ã§ã™ã€‚(4ä»¥ä¸Š8ä»¥ä¸‹)
+ã€€ãƒ»[Height] ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ã€€ãƒ•ã‚©ãƒ³ãƒˆã®é«˜ã•ã§ã™ã€‚ã€€(8ä»¥ä¸Š16ä»¥ä¸‹)
+ã€€ãƒ»[Include File Name]ã€€ãƒ»ãƒ»ãƒ»ã€€ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã«æŒ¿å…¥ã™ã‚‹ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«åã‚’æŒ‡å®šã—ã¾ã™ã€‚(çœç•¥å¯)
+ã€€ã€€
+ã€€å‡¦ç†ã¯æ•°ç§’ã§çµ‚ã‚ã‚Šã¾ã™ã€‚(PCã®ã‚¹ãƒšãƒƒã‚¯ã«ã‚ˆã‚‹)
 
 [EOF]
