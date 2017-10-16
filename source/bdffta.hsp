@@ -76,20 +76,25 @@ repeat fwidth*2
 loop
 fempty+="},\n"
 notesel buf
-print "Loading file..."
+print "Loading file ..."
 dirlist list,fname,1
 if stat==0:print "File does not exist.":end
 noteload fname
+max=noteinfo(0)
 print "..."
 sdim arbuf
-max=noteinfo(0)
 set_string ""
 if includeFile!="":add_string "#include "+includeFile+"\n"
 add_string "const u16 "+Argv(4)+"[0x10000]["+int(fwidth*2+1)+"] = {\n"
 st=timeGetTime():t=st
-chars=0:code=-1:ofsx=0:ofsy=0:sizx=0
-repeat max
-	noteget s,cnt
+chars=0:code=-1:ofsx=0:ofsy=0:sizx=0:ofset=0:count=0
+sdim s,256
+repeat
+	//notegetを使わずに高速化を図る。
+	getstr s,buf,ofset,0x0D,255// \rまで読みだす。
+	if peek(s,0)==0x0A:ofset++:continue// \n
+	ofset+=strsize
+	if strsize==0:break
 	split s," ",cmd,prm,prm2,prm3,prm4
 	if cmd=="ENCODING"{
 		if (int(prm)-code)>1{//途切れた
@@ -126,20 +131,20 @@ repeat max
 		arbuf+=strf("0x%02X\n",cmd)
 	}
 	if cmd=="BITMAP":bfrag=1
-	if (timeGetTime()-t)>1000{
-		print strf("... %5d/%5d (%d chars)",cnt,max,chars)
+	if (timeGetTime()-t)>500{
+		print strf("Converting ... (%d chars)",chars)
 		t=timeGetTime()
 	}
 loop
 noteunsel
-print "Conversion complete..."
+print "Conversion complete ..."
 add_string "};"
 sdim cbuf
 get_string cbuf
-print strf("Outputting... [%s]",sourceFile)
+print strf("Outputting ... [%s]",sourceFile)
 notesel cbuf
 notesave sourceFile
-print strf("Outputting... [%s]",headerFile)
+print strf("Outputting ... [%s]",headerFile)
 sdim hbuf
 notesel hbuf
 noteadd "extern const u16 "+Argv(4)+"[0x10000]["+int(fwidth*2+1)+"];",-1,0
