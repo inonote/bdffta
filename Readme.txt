@@ -2,8 +2,8 @@
 [ファイル名] bdffta.exe
 [バージョン] 1.8
 [　 作者 　] いののて
-[　連絡先　] InoueSoftware@excite.co.jp、https://twitter.com/inonote
-[　　HP　　] http://inoueeee.mitarashidango.com/
+[　連絡先　] inonote046@gmail.com、https://twitter.com/inonote
+[　　HP　　] http://inonote.ifdef.jp/
 
 BDFフォントをC言語の配列に変換するツールです。
 BDFフォントの改行コードをCR+LFにしておく必要があります。
